@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Legal Predictions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        header h1, footer p {
+            margin: 0;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 2rem;
+        }
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #2980b9;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+        button, input[type="submit"] {
+            background-color: #2980b9;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        button:hover, input[type="submit"]:hover {
+            background-color: #1c5983;
+        }
+        .prediction-result {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-top: 1rem;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Indian Legal Predictions</h1>
+    </header>
+    <div class="main-content">
+        <div class="container">
+            <!-- Form for Predicting Semantic Role -->
+            <div class="form-container">
+                <h2>Semantic Segmentation</h2>
+                <form method="POST" action="/predict_role">
+                    <label for="sentence">Enter a sentence:</label>
+                    <textarea id="sentence" name="sentence" rows="5"></textarea>
+                    <button type="submit">Predict Role</button>
+                </form>
+                <!-- Display Prediction for Semantic Role -->
+                {% if sentence %}
+                <div class="prediction-result">
+                    <p>{{ prediction_role | safe }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Form for Predicting Legal Section -->
+            <div class="form-container">
+                <h2>Legal Statute Identification</h2>
+                <form method="POST" action="/predict_section">
+                    <label for="case_details">Case Details:</label>
+                    <textarea id="case_details" name="case_details" rows="10"></textarea>
+                    <input type="submit" value="Predict Section">
+                </form>
+                <!-- Display Prediction for Legal Section -->
+                {% if case_details %}
+                <div class="prediction-result">
+                    <p>{{ prediction_section }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; Applied NLP Research Group, Digital University Kerala. All rights reserved.</p>
+    </footer>
+</body>
+</html>
